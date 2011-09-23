@@ -53,5 +53,8 @@ public class HailTopology {
         builder.setBolt(3, new HailBolt(), 2)
             .shuffleGrouping(2);
 
+        // Java-level code needs to change between submitting the
+        // job locally and to a cluster?  Really, storm?  Really?
+        StormUtils.runTopologyLocally(builder.createTopology());
     }
 }
