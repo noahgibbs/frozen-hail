@@ -1,5 +1,7 @@
 package frozen.hail;
 
+import frozen.utils.StormUtils;
+
 import backtype.storm.task.OutputCollector;
 import backtype.storm.task.TopologyContext;
 import backtype.storm.topology.IRichBolt;
@@ -8,7 +10,11 @@ import backtype.storm.topology.TopologyBuilder;
 import backtype.storm.tuple.Fields;
 import backtype.storm.tuple.Tuple;
 import backtype.storm.tuple.Values;
+import backtype.storm.utils.Utils;
 
+import java.util.Map;
+
+// Deps to remove over time
 import backtype.storm.testing.TestWordSpout;
 
 public class HailTopology {
@@ -44,5 +50,8 @@ public class HailTopology {
         builder.setSpout(1, new TestWordSpout(), 10);
         builder.setBolt(2, new HailBolt(), 3)
             .shuffleGrouping(1);
-        builder.setBolt(3, newHailBolt(), 2)
+        builder.setBolt(3, new HailBolt(), 2)
             .shuffleGrouping(2);
+
+    }
+}
