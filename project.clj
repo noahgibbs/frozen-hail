@@ -1,4 +1,4 @@
-(defproject blocky-hail "0.0.1"
+(defproject frozen-hail "0.0.1"
   :java-source-path "src/jvm"
   :javac-options {:debug "true" :fork "true"}
   :aot :all
